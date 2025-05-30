@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="searchman.entity.Shain"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 <title>社員更新画面</title>
@@ -24,50 +24,36 @@
 }
 </style>
 </head>
-
 <body>
+	<%-- shainから社員情報を取得する --%>
+	<%
+	Shain shain = (Shain) request.getAttribute("shain");
+	%>
 	<h1>社員更新画面</h1>
-	<form action="insert" method="post">
+	<form action="update" method="post">
 		<table class="form-table">
 			<tr>
 				<td><label for="id">ID:</label></td>
-				<td><input type="text" id="id" name="id" class="form-input"
-					pattern="\d{3}" required title="IDは3桁の数字で入力してください"></td>
+				<td><%=shain.getId()%></td>
 			</tr>
 			<tr>
 				<td><label for="name">名前:</label></td>
-				<td><input type="text" id="name" name="name" class="form-input"
-					required></td>
+				<td><%=shain.getName()%></td>
 			</tr>
 			<tr>
 				<td><label for="sei">姓:</label></td>
-				<td><select id="sei" name="sei" class="form-input" required>
-						<option value="">選択してください</option>
-						<option value="男">男</option>
-						<option value="女">女</option>
-				</select></td>
+				<td><%=shain.getSei()%></td>
 			</tr>
 			<tr>
 				<td><label for="nen">年:</label></td>
-				<td><select id="nen" name="nen" class="form-input" required>
-						<option value="">選択してください</option>
-						<%
-						for (int year = 2001; year <= 2025; year++) {
-						%>
-						<option value="<%=year%>"><%=year%></option>
-						<%
-							}
-						%>
-				</select></td>
+				<td><%=shain.getNen()%></td>
 			</tr>
 			<tr>
 				<td><label for="address">住所:</label></td>
-				<td><input type="text" id="address" name="address"
-					class="form-input" required></td>
+				<td><%=shain.getAddress()%></td>
 			</tr>
 		</table>
 		<button type="submit" class="form-button">更新</button>
 	</form>
 </body>
-
 </html>
